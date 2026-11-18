@@ -1,32 +1,150 @@
-    [
-        {
-            "nombre": "Nicolas",
-            "apellido": "Bernard",
-            "dni": "47689974",
-            "mail": "nnicobernard@gmail.com",
-            "cuota": 50000,
-            "vencimiento": "30/10/2026",
-            "cuotaPagada": false,
-            "historialPagos": []
-        },
-        {
-            "nombre": "Marcelo",
-            "apellido": "Gallardo",
-            "dni": "47912018",
-            "mail": "muñeco@gmail.com",
-            "cuota": 50000,
-            "vencimiento": "30/10/2026",
-            "cuotaPagada": false,
-            "historialPagos": []
-        },
-        {
-            "nombre": "Lionel",
-            "apellido": "Messi",
-            "dni": "47123456",
-            "mail": "leo@gmail.com",
-            "cuota": 50000,
-            "vencimiento": "30/10/2026",
-            "cuotaPagada": false,
-            "historialPagos": []
-        }
+   [
+  {
+    "nombre": "Nicolas",
+    "apellido": "Bernard",
+    "dni": "47689974",
+    "mail": "nnicobernard@gmail.com",
+    "cuota": 50000,
+    "alta": "2026-01",
+    "fechaInscripcion": "05/01/2026",
+    "periodosPagados": [
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09"
+    ],
+    "historialPagos": [
+      {
+        "fecha": "05/01/2026",
+        "periodos": [
+          "2026-01"
+        ],
+        "cantidad": 1,
+        "monto": 50000,
+        "formaPago": "tarjeta",
+        "estado": "Acreditado"
+      },
+      {
+        "fecha": "03/02/2026",
+        "periodos": [
+          "2026-02",
+          "2026-03"
+        ],
+        "cantidad": 2,
+        "monto": 90000,
+        "formaPago": "efectivo",
+        "estado": "Acreditado"
+      },
+      {
+        "fecha": "02/05/2026",
+        "periodos": [
+          "2026-04",
+          "2026-05",
+          "2026-06"
+        ],
+        "cantidad": 3,
+        "monto": 150000,
+        "formaPago": "tarjeta",
+        "estado": "Acreditado"
+      },
+      {
+        "fecha": "01/08/2026",
+        "periodos": [
+          "2026-07",
+          "2026-08",
+          "2026-09"
+        ],
+        "cantidad": 3,
+        "monto": 135000,
+        "formaPago": "efectivo",
+        "estado": "Acreditado"
+      }
     ]
+  },
+  {
+    "nombre": "Marcelo",
+    "apellido": "Gallardo",
+    "dni": "47912018",
+    "mail": "marcelogallardo@gmail.com",
+    "cuota": 50000,
+    "alta": "2026-01",
+    "fechaInscripcion": "10/01/2026",
+    "periodosPagados": [
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09",
+      "2026-10",
+      "2026-11",
+      "2026-12"
+    ],
+    "historialPagos": [
+      {
+        "fecha": "10/01/2026",
+        "periodos": [
+          "2026-01",
+          "2026-02",
+          "2026-03",
+          "2026-04",
+          "2026-05",
+          "2026-06"
+        ],
+        "cantidad": 6,
+        "monto": 270000,
+        "formaPago": "efectivo",
+        "estado": "Acreditado"
+      },
+      {
+        "fecha": "05/07/2026",
+        "periodos": [
+          "2026-07",
+          "2026-08",
+          "2026-09",
+          "2026-10",
+          "2026-11",
+          "2026-12"
+        ],
+        "cantidad": 6,
+        "monto": 300000,
+        "formaPago": "tarjeta",
+        "estado": "Acreditado"
+      }
+    ]
+  },
+  {
+    "nombre": "Lionel",
+    "apellido": "Messi",
+    "dni": "47123456",
+    "mail": "leomessi@gmail.com",
+    "cuota": 50000,
+    "alta": "2026-06",
+    "fechaInscripcion": "08/06/2026",
+    "periodosPagados": [
+      "2026-06",
+      "2026-07"
+    ],
+    "historialPagos": [
+      {
+        "fecha": "08/06/2026",
+        "periodos": [
+          "2026-06",
+          "2026-07"
+        ],
+        "cantidad": 2,
+        "monto": 90000,
+        "formaPago": "efectivo",
+        "estado": "Acreditado"
+      }
+    ]
+  }
+]

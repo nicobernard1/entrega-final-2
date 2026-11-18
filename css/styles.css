@@ -3,13 +3,18 @@
     --verde-oscuro: #0b3a2e;
     --verde-medio: #2e8b57;
     --menta: #e1fce1;
-    --fondo: #f3f8ef;
-    --fondo-alt: #e4efda;
+    --fondo: #f6f9f4;
+    --fondo-alt: #e3edf8;
     --blanco: #fff;
-    --texto: #1d2b25;
-    --texto-suave: #5b6b63;
-    --borde: #d3e0c8;
-    --rojo: #c0392b;
+    --texto: #121c17;
+    --texto-suave: #3b4d44;
+    --borde: #b4c7ad;
+    --rojo: #b3261e;
+    --rojo-claro: #fdecea;
+    --azul: #1b4f8f;
+    --azul-oscuro: #123a6b;
+    --azul-claro: #e3edf9;
+    --azul-borde: #9bb8de;
     --radio: 0.875rem;
     --sombra: 0 0.25rem 1.25rem rgba(17, 85, 68, 0.08);
 }
@@ -33,7 +38,7 @@ body {
 }
 
 :focus-visible {
-    outline: 3px solid var(--verde-medio);
+    outline: 3px solid var(--azul);
     outline-offset: 2px;
 }
 
@@ -123,7 +128,7 @@ header {
     box-shadow: var(--sombra);
 }
 
-/* ---------- Formulario de inscripción ---------- */
+/* ---------- Formulario ---------- */
 #formulario {
     width: 100%;
     max-width: 42rem;
@@ -148,7 +153,8 @@ label {
     color: var(--texto);
 }
 
-input {
+input,
+select {
     width: 100%;
     padding: 0.875rem 1rem;
     margin-top: 0.4rem;
@@ -162,13 +168,14 @@ input {
 }
 
 input::placeholder {
-    color: #92a39a;
+    color: #66786f;
 }
 
-input:focus {
+input:focus,
+select:focus {
     outline: none;
-    border-color: var(--verde-medio);
-    box-shadow: 0 0 0 4px rgba(46, 139, 87, 0.18);
+    border-color: var(--azul);
+    box-shadow: 0 0 0 4px rgba(27, 79, 143, 0.2);
 }
 
 .btn-agregar {
@@ -195,7 +202,9 @@ input:focus {
 }
 
 /* ---------- Información ---------- */
-.info h2 {
+.info h2,
+.titulo-panel {
+    color: var(--azul-oscuro);
     margin: 0 0 1.5rem;
     padding: 0;
     font-size: clamp(1.75rem, 3.5vw, 2.25rem);
@@ -216,13 +225,13 @@ input:focus {
     background: var(--fondo);
     padding: 1.25rem 1.5rem;
     border-radius: 0.75rem;
-    border-left: 4px solid var(--verde-medio);
+    border-left: 4px solid var(--azul);
 }
 
 .info-item h3 {
     margin: 0 0 0.5rem;
     font-size: 1.3rem;
-    color: var(--verde);
+    color: var(--azul-oscuro);
 }
 
 .info-item p {
@@ -259,7 +268,7 @@ input:focus {
 .dato p {
     margin: 0.25rem 0 0;
     font-size: 1.1rem;
-    opacity: 0.85;
+    opacity: 1;
 }
 
 .buscador {
@@ -357,6 +366,332 @@ input:focus {
 .btn-restablecer:hover {
     background: var(--verde);
     color: #fff;
+}
+
+/* ---------- Errores del formulario ---------- */
+.error {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--rojo);
+}
+
+input.invalido {
+    border-color: var(--rojo);
+    background: var(--rojo-claro);
+}
+
+input.invalido:focus {
+    border-color: var(--rojo);
+    box-shadow: 0 0 0 4px rgba(179, 38, 30, 0.2);
+}
+
+.btn-cancelar {
+    display: none;
+    margin-top: 0.75rem;
+    background: transparent;
+    color: var(--verde);
+    border: 2px solid var(--verde);
+}
+
+.btn-cancelar:hover {
+    background: var(--verde);
+    color: #fff;
+}
+
+.editando .btn-cancelar {
+    display: block;
+}
+
+.socio button[class^="editar"] {
+    background: white;
+    color: var(--verde);
+    border: 2px solid var(--verde);
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+}
+
+.socio button[class^="editar"]:hover {
+    background: var(--verde);
+    color: white;
+}
+
+.socio button[class^="historial"] {
+    background: white;
+    color: var(--azul);
+    border: 2px solid var(--azul);
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+}
+
+.socio button[class^="historial"]:hover {
+    background: var(--azul);
+    color: white;
+}
+
+.texto-aldia {
+    color: #1e6b3f;
+}
+
+.texto-deuda {
+    color: var(--rojo);
+}
+
+/* ---------- Estado de los socios ---------- */
+.estado-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.estado-columna {
+    min-width: 0;
+}
+
+.estado-columna .subtitulo {
+    margin-top: 0;
+}
+
+td .atajo {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* ---------- Pagos ---------- */
+.subtitulo {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.35rem;
+    color: var(--azul-oscuro);
+}
+
+.vacio,
+.leyenda {
+    margin: 0.75rem 0;
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+.plan-resumen {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--azul-claro);
+    border-left: 4px solid var(--azul);
+    border-radius: 0.75rem;
+}
+
+.plan-resumen h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.4rem;
+    color: var(--azul-oscuro);
+}
+
+.plan-resumen p {
+    margin: 0.25rem 0;
+    font-size: 1.1rem;
+    color: var(--texto-suave);
+}
+
+.atajos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.atajo {
+    padding: 0.55rem 1.1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--azul);
+    background: white;
+    border: 2px solid var(--azul);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.atajo:hover {
+    background: var(--azul);
+    color: white;
+}
+
+.plan-periodos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.periodo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    background: white;
+    border: 2px solid var(--borde);
+    border-radius: 0.625rem;
+    cursor: pointer;
+}
+
+.periodo input {
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.periodo span {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+}
+
+.periodo small {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.periodo.pagada {
+    background: var(--menta);
+    border-color: var(--verde-medio);
+    color: var(--verde-oscuro);
+    cursor: default;
+}
+
+.periodo.adeudada {
+    background: var(--rojo-claro);
+    border-color: var(--rojo);
+    color: #8f1d17;
+}
+
+.periodo.adelanto {
+    background: var(--azul-claro);
+    border-color: var(--azul-borde);
+    color: var(--azul-oscuro);
+}
+
+.periodo:has(input:checked:not(:disabled)) {
+    box-shadow: 0 0 0 3px rgba(27, 79, 143, 0.45);
+    border-color: var(--azul);
+}
+
+.plan-total {
+    margin: 1.25rem 0 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--azul-oscuro);
+}
+
+.plan-pago .btn-agregar {
+    margin-top: 1rem;
+}
+
+.atajos-cantidad {
+    margin-top: 1rem;
+}
+
+.cantidad-personalizada {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    max-width: 22rem;
+}
+
+.cantidad-personalizada .atajo {
+    margin-top: 0.4rem;
+}
+
+/* ---------- Historial individual ---------- */
+.plan-resumen .historial-pagar {
+    margin-top: 0.75rem;
+}
+
+.tabla-meses {
+    margin-top: 1.5rem;
+}
+
+.fila-anio th {
+    background: var(--azul-claro);
+    color: var(--azul-oscuro);
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+/* ---------- Tablas ---------- */
+.tabla-scroll {
+    overflow-x: auto;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+th,
+td {
+    padding: 0.65rem 0.8rem;
+    text-align: center;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--borde);
+}
+
+thead th {
+    background: var(--azul);
+    color: #fff;
+}
+
+tbody th {
+    text-align: left;
+    color: var(--azul-oscuro);
+}
+
+.celda-cuotas {
+    white-space: normal;
+    min-width: 12rem;
+}
+
+.celda-pagada {
+    color: #1e6b3f;
+    font-weight: 800;
+}
+
+.celda-adeudada {
+    color: var(--rojo);
+    font-weight: 800;
+    background: var(--rojo-claro);
+}
+
+.celda-sin-alta {
+    color: var(--texto-suave);
+}
+
+#registro label,
+#pagos label {
+    margin-top: 1rem;
+}
+
+#registro .tabla-pagos {
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+    .atajo {
+        flex: 1 1 100%;
+    }
+
+    .plan-resumen {
+        padding: 1rem;
+    }
+
+    td .atajo {
+        flex: none;
+    }
 }
 
 /* ---------- Responsive ---------- */

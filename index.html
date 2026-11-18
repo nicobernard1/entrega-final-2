@@ -6,7 +6,6 @@
     <title>Gestión de socios</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- Toastify -->
-     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script defer src="js/storage.js"></script>
     <script defer src="js/main.js"></script>
@@ -19,6 +18,10 @@
 
         <nav class="menu">
             <a href="#socios">Socios</a>
+            <a href="#estado">Estado</a>
+            <a href="#pagos">Pagos</a>
+            <a href="#historial">Historial</a>
+            <a href="#registro">Registro</a>
             <a href="#informacion">Información</a>
             <a href="#asociate">Asociate</a>
         </nav>
@@ -29,21 +32,26 @@
         <section class="banda banda-clara" id="asociate">
             <div class="contenedor">
                 <div class="panel">
-                    <form id="formulario">
-                        <h2>Asociate</h2>
+                    <form id="formulario" novalidate>
+                        <h2 class="titulo-formulario">Asociate</h2>
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="nombre" placeholder="Ingrese el nombre">
+                        <input type="text" id="nombre" class="nombre" placeholder="Ingrese el nombre">
+                        <span class="error"></span>
 
                         <label for="apellido">Apellido</label>
-                        <input type="text" class="apellido" placeholder="Ingrese el apellido">
+                        <input type="text" id="apellido" class="apellido" placeholder="Ingrese el apellido">
+                        <span class="error"></span>
 
                         <label for="dni">DNI</label>
-                        <input type="text" class="dni" placeholder="Ingrese el DNI">
+                        <input type="text" id="dni" class="dni" placeholder="Ingrese el DNI (8 números)">
+                        <span class="error"></span>
 
                         <label for="mail">Mail</label>
-                        <input type="email" class="mail" placeholder="Ingrese el mail">
+                        <input type="email" id="mail" class="mail" placeholder="Ingrese el mail">
+                        <span class="error"></span>
 
                         <button type="button" class="btn-agregar">Agregar socio</button>
+                        <button type="button" class="btn-agregar btn-cancelar">Cancelar edición</button>
                     </form>
                 </div>
             </div>
@@ -86,7 +94,11 @@
                     </div>
                     <div class="dato">
                         <span class="socios-activos">0</span>
-                        <p>Cuotas pagadas</p>
+                        <p>Socios al día</p>
+                    </div>
+                    <div class="dato">
+                        <span class="total-deuda">0</span>
+                        <p>Cuotas adeudadas</p>
                     </div>
                     <div class="dato">
                         <span class="total-recaudado">$0</span>
@@ -101,6 +113,121 @@
                 <div class="lista-socios"></div>
 
                 <button type="button" class="btn-agregar btn-restablecer">Restablecer datos</button>
+            </div>
+        </section>
+
+
+        <section class="banda banda-oscura" id="estado">
+            <div class="contenedor">
+                <div class="panel">
+                    <h2 class="titulo-panel">Estado de los socios</h2>
+                    <div class="estado-grid">
+                        <div class="estado-columna">
+                            <h3 class="subtitulo">Socios al día (<span class="cantidad-aldia">0</span>)</h3>
+                            <div class="lista-aldia"></div>
+                        </div>
+                        <div class="estado-columna">
+                            <h3 class="subtitulo">Socios con deuda (<span class="cantidad-deuda">0</span>)</h3>
+                            <div class="lista-deuda"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="banda banda-clara" id="pagos">
+            <div class="contenedor">
+                <div class="panel">
+                    <h2 class="titulo-panel">Pagos</h2>
+                    <label for="select-socio">Socio</label>
+                    <select id="select-socio" class="select-socio"></select>
+
+                    <p class="vacio plan-vacio">Elegí un socio para pagar o adelantar cuotas.</p>
+
+                    <div class="plan-pago" hidden>
+                        <div class="plan-resumen"></div>
+
+                        <h3 class="subtitulo">¿Qué querés pagar?</h3>
+                        <div class="atajos">
+                            <button type="button" class="atajo atajo-deudas">Pagar deudas</button>
+                            <button type="button" class="atajo atajo-cantidad" data-cantidad="1">Mensual (1)</button>
+                            <button type="button" class="atajo atajo-cantidad" data-cantidad="3">Trimestral (3)</button>
+                            <button type="button" class="atajo atajo-cantidad" data-cantidad="6">Semestral (6)</button>
+                            <button type="button" class="atajo atajo-cantidad" data-cantidad="12">Anual (12)</button>
+                            <button type="button" class="atajo atajo-limpiar">Limpiar</button>
+                        </div>
+
+                        <label for="cantidad-meses">Otra cantidad de meses</label>
+                        <div class="cantidad-personalizada">
+                            <input type="number" id="cantidad-meses" class="cantidad-meses" min="1" max="12" placeholder="Ej: 4">
+                            <button type="button" class="atajo atajo-personalizado">Aplicar</button>
+                        </div>
+                        <span class="error error-cantidad"></span>
+                        <p class="leyenda">También podés tildar las cuotas una por una.</p>
+
+                        <div class="plan-periodos"></div>
+
+                        <label for="forma-pago">Forma de pago</label>
+                        <select id="forma-pago" class="forma-pago">
+                            <option value="efectivo">Efectivo (10% de descuento)</option>
+                            <option value="tarjeta">Tarjeta</option>
+                        </select>
+
+                        <p class="plan-total"></p>
+                        <button type="button" class="btn-agregar btn-registrar-pago">Registrar pago</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="banda banda-oscura" id="historial">
+            <div class="contenedor">
+                <div class="panel">
+                    <h2 class="titulo-panel">Historial individual</h2>
+                    <label for="select-historial">Socio</label>
+                    <select id="select-historial" class="select-historial"></select>
+
+                    <p class="vacio historial-vacio">Elegí un socio para ver su historial mes por mes.</p>
+
+                    <div class="historial-socio" hidden>
+                        <div class="plan-resumen">
+                            <div class="ficha-socio"></div>
+                            <button type="button" class="atajo historial-pagar">Registrar pago</button>
+                        </div>
+
+                        <div class="tabla-meses"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="banda banda-clara" id="registro">
+            <div class="contenedor">
+                <div class="panel">
+                    <h2 class="titulo-panel">Registro de los últimos 12 meses</h2>
+
+                    <label for="filtro-registro">Mostrar</label>
+                    <select id="filtro-registro" class="filtro-registro">
+                        <option value="todos">Todos los socios</option>
+                        <option value="deuda">Socios con deuda</option>
+                        <option value="aldia">Socios al día</option>
+                    </select>
+
+                    <p class="leyenda">✔ Cuota pagada &nbsp; ✘ Cuota adeudada &nbsp; - Anterior al alta del socio</p>
+                    <div class="tabla-registro"></div>
+                </div>
+
+                <div class="panel">
+                    <h2 class="titulo-panel">Registro general de pagos</h2>
+
+                    <label for="filtro-socio">Socio</label>
+                    <select id="filtro-socio" class="filtro-socio"></select>
+
+                    <div class="tabla-pagos"></div>
+                </div>
             </div>
         </section>
 
